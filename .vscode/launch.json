@@ -1,0 +1,54 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run All Cucumber Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+      "args": [
+        "src/features/**/*.feature",
+        "--require-module",
+        "ts-node/register",
+        "--require",
+        "src/steps/**/*.ts"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Run Cucumber @smoke",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+      "args": [
+        "src/features/**/*.feature",
+        "--require-module",
+        "ts-node/register",
+        "--require",
+        "src/steps/**/*.ts",
+        "--tags",
+        "@smoke"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Run Cucumber @regression",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+      "args": [
+        "src/features/**/*.feature",
+        "--require-module",
+        "ts-node/register",
+        "--require",
+        "src/steps/**/*.ts",
+        "--tags",
+        "@regression"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}

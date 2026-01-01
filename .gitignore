@@ -1,0 +1,25 @@
+
+# Playwright reports (auto-generated)
+playwright-report/
+test-results/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE settings (keep launch.json tracked)
+.vscode/*
+!.vscode/launch.json
+
+# Temporary files
+*.tmp
+*.cache
