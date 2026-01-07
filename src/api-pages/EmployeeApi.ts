@@ -1,40 +1,32 @@
 import { APIRequestContext, expect } from '@playwright/test';
+import { ENV } from '../config/env.config';
 
 export class EmployeeApi {
-  private request: APIRequestContext;
-
-  constructor(request: APIRequestContext) {
-    this.request = request;
-  }
+  constructor(private request: APIRequestContext) {}
 
   async getEmployeeById(empId: string): Promise<any | null> {
     const response = await this.request.get(
-      `/web/index.php/api/v2/pim/employees`,
+      `${ENV.API_BASE_URL}/web/index.php/api/v2/pim/employees`,
       {
         params: {
           limit: 50,
           offset: 0,
           model: 'detailed',
           employeeId: empId,
-          includeEmployees: 'onlyCurrent',
-          sortField: 'employee.firstName',
-          sortOrder: 'ASC'
+          includeEmployees: 'onlyCurrent'
         }
       }
     );
 
-    // Demo environment limitation handling
-    if (response.status() === 404) {
+    if ([401, 403].includes(response.status())) {
       console.warn(
-        `[API WARNING] Employee API returned 404 for empId=${empId}. ` +
-        `Demo environment limitation.`
+        `[API WARNING] API access restricted for empId=${empId}. Skipping validation.`
       );
       return null;
     }
 
     expect(response.status(), 'Employee API status').toBe(200);
-
-    const body = await response.json();
-    return body;
+    return await response.json();
   }
 }
+

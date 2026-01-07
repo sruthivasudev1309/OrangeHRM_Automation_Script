@@ -14,7 +14,7 @@ Feature: Add New Employee
     Then I navigate to PIM module
     When I search employee by id
     When I click the Search button
-    Then only one employee record should be displayed
+   Then only one employee record should be displayed
 
     #Edit
     Then edit employee by clicking edit icon
