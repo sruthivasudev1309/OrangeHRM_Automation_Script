@@ -26,9 +26,9 @@ src/
 - API validation implemented with graceful fallback
 
 ## Running Tests
-npm install
-npx playwright install
-npm run test
+Run by Tags
+npm test -- --tags "@smoke"
+npm test -- --tags "@pim"
 
 
 ## Reporting
